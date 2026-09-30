@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POA&M Generator | NIST SP 800-171</title>
+<meta name="description" content="Free POA&M generator for NIST SP 800-171. Turn your open requirements into a prioritized Plan of Action & Milestones with owners, dates, and milestones.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">AI Tech Pros <span>MAPS Tools</span></div>
+    <h1>POA&amp;M Generator</h1>
+    <p class="sub">Turn your open NIST SP 800-171 requirements into a real Plan of Action &amp; Milestones: owners, dates, milestones, evidence. A POA&amp;M does not change your SPRS score. It proves you have a plan to close the gap.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="importCard">
+    <h2>1. Load your gaps</h2>
+    <p id="importStatus" class="muted">Checking for saved answers from the SPRS Score Calculator in this browser…</p>
+    <div class="row">
+      <button id="importCalc" class="btn primary" disabled>Import from SPRS Calculator</button>
+      <button id="selectAll" class="btn">Start with all 110 open</button>
+      <button id="clearAll" class="btn ghost">Clear</button>
+    </div>
+    <p class="muted small">No calculator data? Pick the requirements below by hand. Everything stays in your browser.</p>
+  </section>
+
+  <section class="card hidden" id="warnCard">
+    <h2>Fix before you plan</h2>
+    <div id="warnings"></div>
+  </section>
+
+  <section class="card">
+    <h2>2. Pick the requirements on this POA&amp;M</h2>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Search requirements…">
+      <select id="familyFilter"><option value="">All families</option></select>
+      <select id="weightFilter">
+        <option value="">All weights</option>
+        <option value="5">5-point</option>
+        <option value="3">3-point</option>
+        <option value="5/3">5/3-point</option>
+        <option value="1">1-point</option>
+      </select>
+      <label class="check"><input type="checkbox" id="hideNd" checked> Hide never-deferrable (can't go on a POA&amp;M)</label>
+    </div>
+    <div id="picker"></div>
+  </section>
+
+  <section class="card hidden" id="planCard">
+    <h2>3. Build the plan <span id="planCount" class="muted"></span></h2>
+    <div class="row">
+      <label class="fld">Default start <input type="date" id="defaultStart"></label>
+      <label class="fld">Stagger completions <select id="stagger">
+        <option value="aggressive">Aggressive (5-pt: 30d, 3-pt: 60d, 1-pt: 120d)</option>
+        <option value="steady" selected>Steady (5-pt: 60d, 3-pt: 90d, 1-pt: 180d)</option>
+        <option value="relaxed">Relaxed (5-pt: 90d, 3-pt: 180d, 1-pt: 365d)</option>
+      </select></label>
+      <button id="applyDates" class="btn">Apply suggested dates</button>
+    </div>
+    <p class="muted small">Suggested dates are a starting point. Set dates you can actually hit. A missed POA&amp;M date is worse than a later honest one.</p>
+    <div id="plan"></div>
+  </section>
+
+  <section class="card hidden" id="exportCard">
+    <h2>4. Export</h2>
+    <div class="row">
+      <button id="exportCsv" class="btn primary">Download CSV</button>
+      <button id="exportMd" class="btn">Download POA&amp;M document (Markdown)</button>
+      <button id="printBtn" class="btn ghost">Print</button>
+    </div>
+    <p class="muted small">Paste the document into your System Security Plan's POA&amp;M appendix, or hand the CSV to whoever owns the work.</p>
+  </section>
+
+  <footer class="foot">
+    <p>Free tool from <strong>Neo Harvard</strong>, CEO of <a href="https://aitechpros.ai">AI Tech Pros</a>. Part of the <a href="https://github.com/nehemiah313/maps-framework">MAPS framework</a> family. Estimates only, not legal advice. Requirement text: NIST SP 800-171 Rev. 2 (public domain).</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
